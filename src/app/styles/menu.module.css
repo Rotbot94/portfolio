@@ -1,0 +1,15 @@
+.heading {
+    font-weight: 900;
+    font-size:  13vh;
+    outline: black;
+    text-rendering: optimizeLegibility;
+    transform-style: preserve-3d;
+    text-transform: uppercase;
+    font-style: italic;
+    transition: all .3s ease;
+    white-space: nowrap;
+}
+.heading:hover {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 3px #000;
+}
