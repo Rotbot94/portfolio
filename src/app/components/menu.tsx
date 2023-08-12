@@ -35,6 +35,7 @@ const MenuItem = (props: { title: string; url: string; itemId: number }) => {
       <motion.li
         initial={{ x: 0 }}
         animate={isHovered ? "hovered" : "notHovered"}
+          // @ts-ignore
         variants={hoverVariants}
         id={"heading" + itemId}
         className={`${styles.heading} ${
