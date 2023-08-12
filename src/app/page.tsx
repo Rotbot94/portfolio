@@ -1,62 +1,67 @@
 "use client";
-import Menu from "@/app/components/menu";
+
+import Menu from "./components/menu";
 import { useEffect, useRef } from "react";
 import anime from "animejs";
 import { motion } from "framer-motion";
 export default function Home() {
-  const animationRef = useRef<any>(null);
+    const animationRef = useRef<any>(null);
 
-  useEffect(() => {
-    const animationKeyframes = {
-      targets: `h1.titleclass`,
-      loop: true,
-      autoplay: true,
-      direction: "alternate",
-      easing: "easeInOutExpo",
-      textShadow: {
-        duration: 1500,
-        value: "-10px -12px 0px white",
-        delay: 0,
-        endDelay: 0,
-      },
-    };
+    useEffect(() => {
+        const animationKeyframes = {
+            targets: `h1.titleclass`,
+            loop: true,
+            autoplay: true,
+            direction: "alternate",
+            easing: "easeInOutExpo",
+            textShadow: {
+                duration: 1500,
+                value: "-10px -12px 0px white",
+                delay: 0,
+                endDelay: 0,
+            },
+        };
 
-    animationRef.current = anime(animationKeyframes);
-  }, []);
+        animationRef.current = anime(animationKeyframes);
+    }, []);
 
-  return (
-    <main className="min-h-screen flex flex-row justify-between">
-      <div className="w-full ">
-        <motion.div
-          drag
-          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-          dragTransition={{ bounceStiffness: 500, bounceDamping: 20 }}
-          dragElastic={1}
-          className="flex flex-col justify-center items-center h-full"
-        >
-          <h1 className="titleclass cursor-pointer">
-            hi, <br />
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            I'm Ali
-          </h1>
-          <h2>Web Developer</h2>
-        </motion.div>
-      </div>
-      <motion.div
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: "auto" }}
-        exit={{ opacity: 0 }}
-        className="min-w-[60%]"
-      >
-        <Menu
-          menuItems={[
-            { title: "Skills", url: "skills" },
-            { title: "About me", url: "about" },
-            { title: "Projects", url: "projects" },
-            { title: "Contact", url: "contact" },
-          ]}
-        />
-      </motion.div>
-    </main>
-  );
+    return (
+        <main className="min-h-screen flex flex-row justify-between">
+            <motion.div
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{opacity: {duration: 2}}}
+                className="w-full ">
+                <motion.div
+                    drag
+                    dragConstraints={{left: 0, right: 0, top: 0, bottom: 0}}
+                    dragTransition={{bounceStiffness: 500, bounceDamping: 20}}
+                    dragElastic={1}
+                    className="flex flex-col justify-center items-center h-full"
+                >
+                    <h1 className="titleclass cursor-pointer">
+                        hi, <br/>
+                        {/* eslint-disable-next-line react/no-unescaped-entities */}
+                        I'm Ali
+                    </h1>
+                    <h2>Web Developer</h2>
+                </motion.div>
+            </motion.div>
+            <motion.div
+                initial={{opacity: 0, height: 0}}
+                animate={{opacity: 1, height: "auto"}}
+                transition={{delay: 1.5, height: {duration: 1}}}
+                className="min-w-[60%]"
+            >
+                <Menu
+                    menuItems={[
+                        {title: "Skills", url: "skills"},
+                        {title: "About me", url: "about"},
+                        {title: "Projects", url: "projects"},
+                        {title: "Contact", url: "contact"},
+                    ]}
+                />
+            </motion.div>
+        </main>
+    );
 }

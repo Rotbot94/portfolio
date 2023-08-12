@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "../styles/menu.module.css";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const MenuItem = (props: { title: string; url: string; itemId: number }) => {
   const { title, itemId, url } = props;
@@ -27,7 +28,7 @@ const MenuItem = (props: { title: string; url: string; itemId: number }) => {
   };
 
   return (
-    <a
+      <Link
       href={url}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -44,7 +45,7 @@ const MenuItem = (props: { title: string; url: string; itemId: number }) => {
       >
         {title}
       </motion.li>
-    </a>
+      </Link>
   );
 };
 
