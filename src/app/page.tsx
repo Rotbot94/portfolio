@@ -3,10 +3,8 @@ import Menu from "@/app/components/menu";
 import { useEffect, useRef } from "react";
 import anime from "animejs";
 import { motion } from "framer-motion";
-import { auto } from "@popperjs/core";
-
 export default function Home() {
-  const animationRef = useRef(null);
+  const animationRef = useRef<any>(null);
 
   useEffect(() => {
     const animationKeyframes = {
@@ -38,6 +36,7 @@ export default function Home() {
         >
           <h1 className="titleclass cursor-pointer">
             hi, <br />
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
             I'm Ali
           </h1>
           <h2>Web Developer</h2>

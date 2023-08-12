@@ -5,13 +5,12 @@ import styles from "../styles/menu.module.css";
 const MenuItem = (props: { title: string; url: string; itemId: number }) => {
   const { title, itemId, url } = props;
   const [playing, setPlaying] = useState(false);
-  const [activeItemId, setActiveItemId] = useState(null);
-  const animationRef = useRef(null);
-
-  const translateXValue = (itemId + 1) % 2 == 0 ? "-400px" : "400px";
+  const [activeItemId, setActiveItemId] = useState<null | number>(null);
+  const animationRef = useRef<any>(null);
 
   useEffect(() => {
     if (playing && activeItemId !== null) {
+      const translateXValue = (itemId + 1) % 2 == 0 ? "-400px" : "400px";
       const animationKeyframes = {
         translateX: translateXValue,
         direction: "alternate",
@@ -31,7 +30,7 @@ const MenuItem = (props: { title: string; url: string; itemId: number }) => {
         animationRef.current.pause();
       }
     }
-  }, [playing, activeItemId]);
+  }, [playing, activeItemId, itemId]);
   return (
     <a href={url}>
       <li
@@ -55,7 +54,7 @@ const MenuItem = (props: { title: string; url: string; itemId: number }) => {
 };
 
 export default function Menu(props: {
-  menuItems: { title: string; url: string };
+  menuItems: { title: string; url: string }[];
 }) {
   const { menuItems } = props;
 
