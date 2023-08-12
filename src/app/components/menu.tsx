@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import anime from "animejs";
 import styles from "../styles/menu.module.css";
 
-const MenuItem = (props: { title: string; itemId: number }) => {
-  const { title, itemId } = props;
+const MenuItem = (props: { title: string; url: string; itemId: number }) => {
+  const { title, itemId, url } = props;
   const [playing, setPlaying] = useState(false);
-  const [activeItemId, setActiveItemId] = useState(null); // Keep track of the active item's id
+  const [activeItemId, setActiveItemId] = useState(null);
   const animationRef = useRef(null);
 
   const translateXValue = (itemId + 1) % 2 == 0 ? "-400px" : "400px";
@@ -18,9 +18,8 @@ const MenuItem = (props: { title: string; itemId: number }) => {
         easing: "easeInOutExpo",
       };
 
-      // Only start animation if activeItemId is not null
       animationRef.current = anime({
-        targets: `#heading${activeItemId}`, // Use the activeItemId to target the specific item
+        targets: `#heading${activeItemId}`,
         ...animationKeyframes,
         loop: true,
         easing: "linear",
@@ -28,39 +27,42 @@ const MenuItem = (props: { title: string; itemId: number }) => {
     } else {
       if (animationRef.current) {
         console.log("pause");
-        animationRef.current.restart(); // Pause animation when not active
+        animationRef.current.restart();
         animationRef.current.pause();
       }
     }
   }, [playing, activeItemId]);
   return (
-    <li
-      id={"heading" + itemId}
-      className={`${styles.heading} ${
-        (itemId + 1) % 2 == 0 ? "text-end" : "text-start"
-      } h-full`}
-      onMouseEnter={() => {
-        setPlaying(true);
-        setActiveItemId(itemId); // Set the active item's id
-      }}
-      onMouseLeave={() => {
-        setPlaying(false);
-        setActiveItemId(null); // Clear the active item's id
-      }}
-      style={{ cursor: "pointer" }}
-    >
-      {title}
-    </li>
+    <a href={url}>
+      <li
+        id={"heading" + itemId}
+        className={`${styles.heading} ${
+          (itemId + 1) % 2 == 0 ? "text-end" : "text-start"
+        } h-full cursor-pointer`}
+        onMouseEnter={() => {
+          setPlaying(true);
+          setActiveItemId(itemId);
+        }}
+        onMouseLeave={() => {
+          setPlaying(false);
+          setActiveItemId(null);
+        }}
+      >
+        {title}
+      </li>
+    </a>
   );
 };
 
-export default function Menu(props: { menuItems: any }) {
+export default function Menu(props: {
+  menuItems: { title: string; url: string };
+}) {
   const { menuItems } = props;
 
   return (
-    <ul className="sm:pr-8 overflow-hidden  flex flex-col h-full">
+    <ul className="pr-20 overflow-hidden justify-around flex flex-col h-full">
       {menuItems.map((item: any, idx: number) => (
-        <MenuItem key={idx} title={item.title} itemId={idx} />
+        <MenuItem key={idx} title={item.title} url={item.url} itemId={idx} />
       ))}
     </ul>
   );

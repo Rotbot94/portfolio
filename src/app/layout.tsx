@@ -1,13 +1,9 @@
+"use client";
 import "./styles/globals.css";
-import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { AnimatePresence } from "framer-motion";
 
 const roboto = Roboto({ weight: ["900"], subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Ali Issa",
-  description: "whatever",
-};
 
 export default function RootLayout({
   children,
@@ -15,8 +11,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={roboto.className}>{children}</body>
-    </html>
+    <AnimatePresence mode="wait">
+      <html lang="en">
+        <body className={`${roboto.className} overflow-hidden`}>
+          {children}
+        </body>
+      </html>
+    </AnimatePresence>
   );
 }

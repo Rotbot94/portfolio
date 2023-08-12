@@ -2,13 +2,15 @@
 import Menu from "@/app/components/menu";
 import { useEffect, useRef } from "react";
 import anime from "animejs";
+import { motion } from "framer-motion";
+import { auto } from "@popperjs/core";
 
 export default function Home() {
   const animationRef = useRef(null);
 
   useEffect(() => {
     const animationKeyframes = {
-      targets: `h1.titleclass`, // Use the activeItemId to target the specific item
+      targets: `h1.titleclass`,
       loop: true,
       autoplay: true,
       direction: "alternate",
@@ -25,25 +27,37 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-row justify-between">
+    <main className="min-h-screen flex flex-row justify-between">
       <div className="w-full ">
-        <div className="flex flex-col justify-center items-center h-full">
-          <h1 className="self-center titleclass">
+        <motion.div
+          drag
+          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+          dragTransition={{ bounceStiffness: 500, bounceDamping: 20 }}
+          dragElastic={1}
+          className="flex flex-col justify-center items-center h-full"
+        >
+          <h1 className="titleclass cursor-pointer">
             hi, <br />
             I'm Ali
           </h1>
-        </div>
+          <h2>Web Developer</h2>
+        </motion.div>
       </div>
-      <div className="min-w-[60%]">
+      <motion.div
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: 1, height: "auto" }}
+        exit={{ opacity: 0 }}
+        className="min-w-[60%]"
+      >
         <Menu
           menuItems={[
-            { title: "Skills" },
-            { title: "About me" },
-            { title: "Projects" },
-            { title: "Contact" },
+            { title: "Skills", url: "skills" },
+            { title: "About me", url: "about" },
+            { title: "Projects", url: "projects" },
+            { title: "Contact", url: "contact" },
           ]}
         />
-      </div>
-    </div>
+      </motion.div>
+    </main>
   );
 }
