@@ -11,12 +11,13 @@ const MenuItem = (props: {
 }) => {
   const { title, itemId, url, floatStyle } = props;
 
+  const floatXValue = itemId % 2 === 0 ? 150 : -150;
   const translateXValue = itemId % 2 === 0 ? 400 : -400;
   const [isHovered, setIsHovered] = useState(false);
   const isFloatStyle = floatStyle;
   const hoverVariants = {
     hovered: {
-      x: translateXValue,
+      x: floatStyle ? floatXValue : translateXValue,
       transition: {
         ease: "linear",
         duration: 0.75,
@@ -48,7 +49,7 @@ const MenuItem = (props: {
           itemId % 2 === 0 ? "text-start" : "text-end"
         } h-full cursor-pointer`}
       >
-        {title}
+        /{title}
       </motion.li>
     </Link>
   );
@@ -61,8 +62,8 @@ export default function Menu(props: {
 
   return (
     <ul
-      className={`pr-20 overflow-hidden  flex flex-col ${
-        menuItems[0]?.isFloatStyle ? "items-center" : " h-full justify-around"
+      className={` overflow-hidden justify-around flex flex-col ${
+        menuItems[0]?.isFloatStyle ? "items-center" : " h-full pr-20"
       }`}
     >
       {menuItems.map((item: any, idx: number) => (
