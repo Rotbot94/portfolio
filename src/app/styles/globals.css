@@ -20,4 +20,13 @@ h1 {
     transform-style: preserve-3d;
     text-transform: uppercase;
     white-space: nowrap;
+
+    @media only screen and (max-width: 1700px) {
+        font-size: 10vh;
+    }
+
+    @media only screen and (max-width: 1350px) {
+        font-size: 8vh;
+    }
+
 }

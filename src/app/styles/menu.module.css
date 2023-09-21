@@ -8,6 +8,19 @@
     font-style: italic;
     transition: all .3s ease;
     white-space: nowrap;
+
+    @media only screen and (max-width: 1700px) {
+        font-size: 10vh;
+    }
+
+    @media only screen and (max-width: 1350px) {
+        font-size: 8vh;
+    }
+
+    @media only screen and (max-width: 800px) {
+        font-size: 5vh;
+    }
+
 }
 
 .heading:hover {

@@ -25,7 +25,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen flex flex-row justify-between">
+    <main className="min-h-screen flex flex-col lg:flex-row justify-between">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -37,7 +37,7 @@ export default function Home() {
           dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
           dragTransition={{ bounceStiffness: 500, bounceDamping: 20 }}
           dragElastic={1}
-          className="flex flex-col justify-center items-center h-full"
+          className="flex flex-col justify-center items-center h-full mt-5 lg:mt-0"
         >
           <h1 className="titleclass cursor-pointer">
             hi, <br />
@@ -51,7 +51,7 @@ export default function Home() {
         initial={{ opacity: 0, height: 0 }}
         animate={{ opacity: 1, height: "auto" }}
         transition={{ delay: 1.5, height: { duration: 1 } }}
-        className="min-w-[60%]"
+        className="min-w-[60%] mb-40 lg:mb-0"
       >
         <Menu
           menuItems={[

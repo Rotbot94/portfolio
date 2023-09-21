@@ -63,7 +63,9 @@ export default function Menu(props: {
   return (
     <ul
       className={` overflow-hidden justify-around flex flex-col ${
-        menuItems[0]?.isFloatStyle ? "items-center" : " h-full pr-20"
+        menuItems[0]?.isFloatStyle
+          ? "items-center"
+          : " h-full px-5 md:px-20 lg:pr-20"
       }`}
     >
       {menuItems.map((item: any, idx: number) => (
