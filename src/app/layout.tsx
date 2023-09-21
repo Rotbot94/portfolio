@@ -1,4 +1,5 @@
 "use client";
+
 import "./styles/globals.css";
 import { Roboto } from "next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
@@ -30,6 +31,13 @@ export default function Layout(props: PropsWithChildren<{}>) {
   const pathname = usePathname();
 
   const isRoot = pathname === "/";
+  const [color, setColor] = useState("#C850A0");
+
+  const changeColor = (e: any) => {
+    const newValue = e.target.value;
+    console.log(newValue);
+    setColor(newValue);
+  };
 
   return (
     <html lang="en">
@@ -48,7 +56,18 @@ export default function Layout(props: PropsWithChildren<{}>) {
             }}
           >
             {!isRoot && (
-              <div className="w-auto ps-10 lg:ps-0 lg:w-1/4 bg-amber-500 top-1/3 lg:top-[300px] end-0 lg:end-20 absolute">
+              <div
+                style={{
+                  backgroundColor: color,
+                }}
+                className={`w-auto px-10 top-1/3 end-0 absolute lg:end-20 lg:top-[300px] lg:px-0 lg:w-1/4`}
+              >
+                <input
+                  id="nativeColorPicker1"
+                  type="color"
+                  onChange={changeColor}
+                  defaultValue={color}
+                />
                 <Menu
                   menuItems={[
                     { title: "Skills", url: "skills", isFloatStyle: true },

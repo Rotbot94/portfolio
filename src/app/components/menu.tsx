@@ -11,7 +11,7 @@ const MenuItem = (props: {
 }) => {
   const { title, itemId, url, floatStyle } = props;
 
-  const floatXValue = itemId % 2 === 0 ? 150 : -150;
+  const floatXValue = itemId % 2 === 0 ? 100 : -100;
   const translateXValue = itemId % 2 === 0 ? 400 : -400;
   const [isHovered, setIsHovered] = useState(false);
   const isFloatStyle = floatStyle;
@@ -47,7 +47,7 @@ const MenuItem = (props: {
         id={"heading" + itemId}
         className={`${isFloatStyle ? styles.floatheading : styles.heading} ${
           itemId % 2 === 0 ? "text-start" : "text-end"
-        } h-full cursor-pointer`}
+        } h-full cursor-pointer `}
       >
         {isFloatStyle ? "" : "/"}
         {title}
