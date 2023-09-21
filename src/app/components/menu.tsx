@@ -49,7 +49,8 @@ const MenuItem = (props: {
           itemId % 2 === 0 ? "text-start" : "text-end"
         } h-full cursor-pointer`}
       >
-        /{title}
+        {isFloatStyle ? "" : "/"}
+        {title}
       </motion.li>
     </Link>
   );
@@ -62,7 +63,7 @@ export default function Menu(props: {
 
   return (
     <ul
-      className={` overflow-hidden justify-around flex flex-col ${
+      className={` overflow-ellipsis justify-around flex flex-col ${
         menuItems[0]?.isFloatStyle
           ? "items-center"
           : " h-full px-5 md:px-20 lg:pr-20"

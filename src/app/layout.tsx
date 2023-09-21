@@ -3,7 +3,13 @@ import "./styles/globals.css";
 import { Roboto } from "next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import React, { useContext, useRef, PropsWithChildren } from "react";
+import React, {
+  useContext,
+  useRef,
+  PropsWithChildren,
+  useState,
+  useEffect,
+} from "react";
 import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context";
 import Menu from "@/app/components/menu";
 
@@ -42,7 +48,7 @@ export default function Layout(props: PropsWithChildren<{}>) {
             }}
           >
             {!isRoot && (
-              <div className="w-1/5 bg-amber-500 top-[300px] end-20 absolute">
+              <div className="w-auto ps-10 lg:ps-0 lg:w-1/4 bg-amber-500 top-1/3 lg:top-[300px] end-0 lg:end-20 absolute">
                 <Menu
                   menuItems={[
                     { title: "Skills", url: "skills", isFloatStyle: true },
